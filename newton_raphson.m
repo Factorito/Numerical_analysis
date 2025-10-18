@@ -1,5 +1,7 @@
 function v = newton_raphson(f,df,x0,es,maxit)
 
+%x1 = x0-(dx*f(x0))/(f(x0+dx)-f(x0)) (modified secant)
+%parameter add dx
 
 
 fprintf("iteration |  x1     rerr\n");
@@ -10,6 +12,7 @@ for i= 1:maxit
   x0 = x1;
   if ea<es break; end
 end
+
 
 
 

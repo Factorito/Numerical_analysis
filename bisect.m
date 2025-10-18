@@ -5,8 +5,7 @@ function bisect(fp, xl, xu, es, maxit)
   %es = least err
   %maxit = iteration
   %f = @(m,) sqrt(g*m/cd)*tanh(sqrt(g*cd/m)*t)-v;
-  %if you want to use false position(가위치기 법)
-  % replace xr = xu- (fxu*(xl-xu))/(fxl-fxu)
+  %xr = xu- (fxu*(xl-xu))/(fxl-fxu)
 
 
   pxr=0;
@@ -28,4 +27,5 @@ function bisect(fp, xl, xu, es, maxit)
     if ea<es && iter>2 break; end
    pxr=xr;
   endfor
+
 

@@ -1,0 +1,53 @@
+function xn = newton_raphson_jacobian(F, J, x0, es_desired)
+% Jacobian 행렬을 이용하여 비선형 연립방정식 F(x)=0을 푸는 Newton-Raphson 함수.
+% F: 비선형 함수 벡터 (Function Handle)
+% J: Jacobian 행렬 (Function Handle)
+% x0: 초기 추측값 벡터
+
+% --- 오차 종료 조건을 위한 설정 ---
+if nargin < 4
+    es_desired = 0.00001; % 원하는 근사 상대 오차(%) 기준값 설정
+end
+
+xi = x0;             % 이전 해 벡터 x^(k) (초기 추측값)
+xn = x0;             % 새로운 해 벡터 x^(k+1)
+maxit = 50;          % 최대 반복 횟수
+
+% 입력 벡터 형식을 열 벡터로 보장
+if size(x0, 2) > 1
+    xi = xi';
+end
+
+for i = 1 : maxit
+    xi_old = xi; % 오차 계산을 위해 현재 해를 저장
+
+    % 1. 현재 해(xi_old)에서 F(x) 벡터와 J(x) 행렬을 계산
+    F_vector = F(xi_old);
+    J_matrix = J(xi_old);
+
+    % 2. 선형 시스템 J(x) * dx = -F(x)를 풀어 해의 수정 벡터(dx)를 구함
+    % MATLAB의 역슬래시 연산자(\)는 선형 방정식을 효율적으로 풀어줍니다.
+    dx = J_matrix \ (-F_vector); 
+
+    % 3. 해를 업데이트: x^(k+1) = x^(k) + dx
+    xn = xi_old + dx; 
+    
+    % 다음 반복을 위해 새로운 해를 이전 해 변수에 업데이트
+    xi = xn;
+
+    % --- 오차 추정값 이하 종료 조건 ---
+    es = abs(xn - xi_old) ./ abs(xn) .* 100;
+    Ea = max(es); % 최대 근사 상대 오차
+    
+    if Ea < es_desired
+        disp(['Newton-Raphson 수렴. 반복 횟수: ', num2str(i), ', 최대 오차: ', num2str(Ea), '%.']);
+        break; 
+    end
+    % --------------------------------------
+end
+
+if i == maxit && Ea >= es_desired
+    warning('Newton-Raphson 방법이 최대 반복 횟수 내에 수렴하지 않았습니다.');
+end
+
+end

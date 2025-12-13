@@ -18,7 +18,7 @@ a = 0;  b = 0.8; t_val  = 1.640533
 %h = (b-a)/4
 %x1 = linspace(a,b,5) , n=length(x1), x = x1(2:n)
 %v = 1/3*h*(f(a)+4*f(x(1))+4*f(x(3))+2*f(x(2))+f(b))
-%err(v,t_val) //합성 simposon 3/8
+%err(v,t_val) //합성 simposon 1/3
 
 %h = (b-a)/3
 %x1 = linspace(a,b,4); n=length(x1); x=x1(2:n)
@@ -31,6 +31,7 @@ a = 0;  b = 0.8; t_val  = 1.640533
 %v2 = 3/8*h*(f(x(2))+3*f(x(3))+3*f(x(4))+f(b))
 %v=v1+v2
 %err(v,t_val) //simposon 1/3+3/8
+
 
 
 

@@ -1,4 +1,4 @@
-function [T, Y] = euler_method(f, t0, y0, h, N)
+function [T, Y] = euler_method_init(f, t0, y0, h, N)
 % EULER_METHOD
 % 1계 상미분 방정식 dy/dt = f(t, y)를 오일러 방법으로 풉니다.
 %

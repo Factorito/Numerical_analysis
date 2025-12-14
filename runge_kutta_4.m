@@ -17,8 +17,9 @@ k4=f(t,y);
 phi = 1/6*(k1+2*k2+2*k3+k4)
 
 y = y0+phi*h
-t0 = t0+1;
+t0 = t0+h;
 end
 
 y
+
 

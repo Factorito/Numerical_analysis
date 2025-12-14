@@ -11,10 +11,12 @@ A(1,1) = length(x);
 A(1,2) = sum(x);
 A(2,1) = sum(x);
 A(2,2) = sum(x.^2);
+b = zeros(2,1);
 b(1) = sum(y);
 b(2) = sum(x.*y);
 b=b';
-inv(A).*b
+
+v_backslash = A \ b;
 
 hold on
 
@@ -22,6 +24,7 @@ p = [19.4702 -234.2857];
 z = 10:80;
 zy = polyval(p,z);
 plot(z,zy);
+
 
 
 

@@ -1,4 +1,4 @@
-function [T, Y] = heun_method(f, t0, y0, h, N, iter)
+function [T, Y, E] = heun_method(f, t0, y0, h, N, iter)
 % HEUN_METHOD
 % 1계 상미분 방정식 dy/dt = f(t, y)를 Heun의 방법으로 풉니다.
 %
@@ -48,5 +48,6 @@ for i = 1:N
     
     T(i + 1) = t;
     Y(i + 1) = y;
+    E(i) = err(y_corrector , y_p);
 end
 end

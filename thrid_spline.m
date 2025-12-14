@@ -63,7 +63,7 @@ b
 k_val = 2;
 s2 = @(x) f(k_val) + b(k_val)*(x-xi(k_val)) + c(k_val)*(x-xi(k_val))^2 + d(k_val)*(x-xi(k_val))^3
 
-s2(2.25)
+s2(2.25) %target argument
 
 
 
@@ -105,4 +105,5 @@ grid on;
 
 
 hold off;
+
 

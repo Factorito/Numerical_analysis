@@ -86,3 +86,13 @@ for m = 1:length(x_target)
     % 마지막 점 xi(n)에 도달한 경우 (마지막 구간의 오른쪽 경계)
     if k == n
         k = n-1;
+    end
+    
+    % S_k(x) = f_k + b_k*(x-x_k) + c_k*(x-x_k)^2 + d_k*(x-x_k)^3
+    delta_x = x - xi(k);
+    
+    % f(k)는 데이터 값, b(k), c(k), d(k)는 계수 (k=1 to n-1)
+    y_target(m) = f(k) + b(k) * delta_x + c(k) * (delta_x^2) + d(k) * (delta_x^3);
+end
+
+end

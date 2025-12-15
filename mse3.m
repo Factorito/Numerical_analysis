@@ -4,10 +4,6 @@ x1 = [0,2,1.5,1,4,7]';
 x2 = [0,1,2,3,6,2]';
 y = [5,10,9,0,3,27]';
 
-% 데이터 플롯
-plot(x, y, 'o', 'DisplayName', 'Data');
-hold on;
-
 n = length(x);
 
 % 2차 다항식 피팅을 위한 최소 제곱법 행렬 A (X'X) 정의
@@ -35,18 +31,9 @@ z = min(x):0.1:max(x);
 % 피팅된 다항식 값 계산
 zy = polyval(b_polyval, z);
 
-% 피팅 곡선 플롯
-plot(z, zy, '-', 'DisplayName', '2nd Order Fit');
 
-% 그래프 설정
-xlabel('x');
-ylabel('y');
-title('2차 다항식 최소 제곱 피팅');
-legend('show');
-grid on;
-hold off;
-
-% 계산된 계수 출력 (b1 + b2*x + b3*x^2)
+% 계산된 계수 출력 (b1 + b2*x(1) + b3*x(2)^2)
 fprintf('Fit coefficients (b1, b2, b3):\n');
 disp(b');
 fprintf('The fitted polynomial is: y = %f + %f*x + %f*x^2\n', b(1), b(2), b(3));
+
